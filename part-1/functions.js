@@ -3,7 +3,11 @@ module.exports = {
   //for a given Date object, returing the weekday as a string
   //('Sunday', 'Monday', 'Tuesday', etc.).
   weekday: function(date) {
+    if ( !(date instanceof Date)) {
+      return 'invalid input'
+    }
     var numOfDay = date.getDay();
+
     switch(numOfDay) {
       case 0:
               numOfDay = "Sunday";
@@ -33,8 +37,12 @@ module.exports = {
   //string with every 4th character converted to upper case and the rest converted to lower case.
   //Treat whitespace and punctuation characters the same as any other word character.
   capitalizeFourth: function(string) {
-    string = string.toLowerCase().split('');//lowercase all of string
     const nth = 4; // the nth character you want to replace
+    if  (typeof string !== "string" || string === "") {
+      return 'invalid input'
+    }
+    string = string.toLowerCase().split('');//lowercase all of string
+
     for (var i = nth-1; i < string.length-1; i+=nth) {
       string[i] = string[i].toUpperCase() // the character you want to replace the nth value
     }
@@ -68,7 +76,7 @@ module.exports = {
   }
 }
 
-// 
+//
 // console.log("//filterAround Test")
 // let dateA = new Date(2017, 7, 14)
 // console.log(module.exports.weekday(dateA));
